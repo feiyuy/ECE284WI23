@@ -46,6 +46,49 @@ int main(int argc, char** argv) {
     l1 = strlen(s1);
     l2= strlen(s2);
 
+    int seq1[l1];
+    int seq1[l2];
+
+    for (i=0;i<l1;i++){
+        switch(s1[i]) {
+        case 'A':
+            seq1[i] = 0;
+            break;
+        case 'C':
+            seq1[i] = 1;
+            break;
+        case 'G':
+            seq1[i] = 2;
+            break;
+        case 'T':
+            seq1[i] = 3;
+            break;
+        default:
+            seq1[i] = 0;
+            break;
+        }
+    }
+
+    for (j=0;i<l2;j++){
+        switch(s2[j]) {
+        case 'A':
+            seq2[j] = 0;
+            break;
+        case 'C':
+            seq2[j] = 1;
+            break;
+        case 'G':
+            seq2[j] = 2;
+            break;
+        case 'T':
+            seq2[j] = 3;
+            break;
+        default:
+            seq2[j] = 0;
+            break;
+        }
+    }
+
     timer.Start();
     fprintf(stdout, "\nCompute Levinstein distance in CPU.\n");
     for(i=0;i<=l1;i++) {
@@ -56,7 +99,7 @@ int main(int argc, char** argv) {
     }
     for (j=1;j<=l1;j++) {
         for(i=1;i<=l2;i++) {
-            if(s1[i-1] == s2[j-1]) {
+            if(seq1[i-1] == seq2[j-1]) {
                 track= 0;
             } else {
                 track = 1;
@@ -67,18 +110,6 @@ int main(int argc, char** argv) {
     }
     std::cout<<"The Levinstein distance is:"<<dist[l2][l1];
     fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
-
-    int L1 = MIN(l1, l2);
-    int L2 = MAX(l1, l2);
-
-    int *d_mat;
-    cudaMalloc(&d_mat, L1*L2*sizeof(int));
-
-    initRows <<5, L1/5>>>(d_mat, L1);
-    initCols <<5, L2/5>>>(d_mat, L1, L2);
-
-
-
 
     return 0;
 }

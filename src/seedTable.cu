@@ -7,6 +7,25 @@
 #include <thrust/host_vector.h>
 #include <thrust/device_vector.h>
 
+/*
+void compute(
+    char *seq1,
+    char *seq2,
+    int l1,
+    int l2,
+    int *mat
+) {
+    int L1 = MIN(l1, l2);
+    int L2 = MAX(l1, l2);
+
+    int *d_mat;
+
+    cudaMalloc(&d_mat, L1*L2*sizeof(int));
+
+    initRows <<5, L1/5>>>(d_mat, L1);
+    initCols <<5, L2/5>>>(d_mat, L1, L2);
+*/
+
 __global__ void initRows(
     int *mat,
     int L1
