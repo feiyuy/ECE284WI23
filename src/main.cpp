@@ -38,10 +38,18 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
+    fstream new_file;
+    string sa;
+    new_file.open(refFilename, ios::in); 
+    if (new_file.is_open()) { 
+        getline(new_file, sa);
+        char s1[] = sa;
+    }
+    new_file.close(); 
+
     int i,j,l1,l2,t,track;
     int dist[51][51];
     //take the strings as input
-    char s1[] = "GCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGC";
     char s2[] = "CTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCT";
     //stores the lenght of strings s1 and s2
     l1 = strlen(s1);
