@@ -24,5 +24,5 @@ add_executable (distance
     src/distance.cu
     src/main.cpp)
 
-target_link_libraries(seedTable PRIVATE ${Boost_LIBRARIES} ${ZLIB_LIBRARIES} ${TBB_IMPORTED_TARGETS})
+target_link_libraries(distance PRIVATE ${Boost_LIBRARIES} ${ZLIB_LIBRARIES} ${TBB_IMPORTED_TARGETS})
 
