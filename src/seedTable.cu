@@ -6,7 +6,7 @@
 #include <thrust/binary_search.h>
 #include <thrust/host_vector.h>
 #include <thrust/device_vector.h>
-#define MIN(x,y) ((x) < (y) ? (x) : (y))
+
 
 /**
  * Prints information for each available GPU device on stdout
@@ -89,7 +89,7 @@ __global__ void matrixFill(
     int thread_index = threadIdx.x + blockIdx.x * blockDim.x;
 
     for (int i=1; i<L2; i++){
-        if (thread_index < MIN(i, L1-1)){
+        if (thread_index < (i < L1-1? i:L1-1)){
             x = 1 + thread_index;
             y = i - thread_index;
 
@@ -102,8 +102,8 @@ __global__ void matrixFill(
                 diagonal = mat[(y-1)*L1+x-1] + 1;
             }
 
-            temp = MIN(up, left);
-            result = MIN(temp, diagonal);
+            temp = (up < left? up:left);
+            result = (temp < diagonal? temp:diagonal);
             mat[y*L1+x] = result;
         }
 
@@ -124,8 +124,8 @@ __global__ void matrixFill(
                 diagonal = mat[(y-1)*L1+x-1] + 1;
             }
 
-            temp = MIN(up, left);
-            result = MIN(temp, diagonal);
+            temp = (up < left? up:left);
+            result = (temp < diagonal? temp:diagonal);
             mat[y*L1+x] = result;
         }
 
