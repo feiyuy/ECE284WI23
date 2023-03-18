@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdint.h>
-#include <thrust/sort.h>
-#include <thrust/scan.h>
-#include <thrust/binary_search.h>
-#include <thrust/host_vector.h>
-#include <thrust/device_vector.h>
 
 #define MIN(x,y) ((x) < (y) ? (x) : (y))
 
