@@ -7,6 +7,9 @@
 #include "seedTable.cuh"
 #include "zlib.h"
 
+#define MIN(x,y) ((x) < (y) ? (x) : (y))
+#define MAX(x,y) ((x) < (y) ? (y) : (x))
+
 // For parsing the command line values
 namespace po = boost::program_options;
 

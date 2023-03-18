@@ -35,8 +35,8 @@ void compute(
         cudaMemcpy(d_seq2, seq1, L2*sizeof(int), cudaMemcpyHostToDevice);
     }
 
-    initRows <<<5, L1/5>>>(d_mat, L1);
-    initCols <<<5, L2/5>>>(d_mat, L1, L2);
+    initRows<<<5, L1/5>>>(d_mat, L1);
+    initCols<<<5, L2/5>>>(d_mat, L1, L2);
     cudaMemcpy(mat, d_mat, l1*l2*sizeof(int), cudaMemcpyDeviceToHost);
 }
 
