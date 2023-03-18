@@ -22,7 +22,6 @@ find_package(TBB REQUIRED tbbmalloc tbbmalloc_proxy tbb_preview)
 
 add_executable (seedTable
     src/seedTable.cu
-    src/twoBitCompressor.cpp
     src/main.cpp)
 
 target_link_libraries(seedTable PRIVATE ${Boost_LIBRARIES} ${ZLIB_LIBRARIES} ${TBB_IMPORTED_TARGETS})
