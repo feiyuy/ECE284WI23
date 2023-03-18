@@ -7,6 +7,7 @@
 #include "seedTable.cuh"
 #include "zlib.h"
 #define MIN(x,y) ((x) < (y) ? (x) : (y))
+#define MAX(x,y) ((x) < (y) ? (y) : (x))
 
 // For parsing the command line values
 namespace po = boost::program_options;
@@ -44,6 +45,9 @@ int main(int argc, char** argv) {
     //stores the lenght of strings s1 and s2
     l1 = strlen(s1);
     l2= strlen(s2);
+
+    timer.Start();
+    fprintf(stdout, "\nCompute Levinstein distance in CPU.\n");
     for(i=0;i<=l1;i++) {
         dist[0][i] = i;
     }
@@ -62,6 +66,19 @@ int main(int argc, char** argv) {
         }
     }
     std::cout<<"The Levinstein distance is:"<<dist[l2][l1];
+    fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
+
+    L1 = MIN(l1, l2);
+    L2 = MAX(l1, l2);
+
+    int *d_mat;
+    cudaMalloc(&d_mat, L1*L2*sizeof(int));
+
+    initRows <<5, L1/5>>>(d_mat, L1);
+    initCols <<5, L2/5>>>(d_mat, L1, L2);
+
+
+
 
     return 0;
 }
