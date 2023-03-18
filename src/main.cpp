@@ -2,7 +2,6 @@
 #include <vector>
 #include <fstream>
 #include <string>
-#include <cuda.h>
 #include <boost/program_options.hpp>
 #include <tbb/task_scheduler_init.h>
 #include "seedTable.cuh"
