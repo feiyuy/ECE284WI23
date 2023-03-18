@@ -41,12 +41,10 @@ int main(int argc, char** argv) {
     std::fstream new_file;
     std::string sa;
     new_file.open(refFilename, std::ios::in); 
-    if (new_file.is_open()) { 
-        getline(new_file, sa);
-        int length = sa.length();
-        char* s1 = new char[length + 1];
-        strcpy(s1, sa.c_str());
-    }
+    getline(new_file, sa);
+    int length = sa.length();
+    char* s1 = new char[length + 1];
+    strcpy(s1, sa.c_str());
     new_file.close(); 
 
     int i,j,l1,l2,t,track;
