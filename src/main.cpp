@@ -10,9 +10,6 @@
 // For parsing the command line values
 namespace po = boost::program_options;
 
-// For reading in the FASTA file
-KSEQ_INIT2(, gzFile, gzread)
-
 int main(int argc, char** argv) {
     // Timer below helps with the performance profiling (see timer.hpp for more
     // details)
