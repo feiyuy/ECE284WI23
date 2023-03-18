@@ -19,8 +19,6 @@ int main(int argc, char** argv) {
     Timer timer;
 
     std::string refFilename;
-    uint32_t kmerSize;
-    uint32_t numThreads;
 
     // Parse the command line options
     po::options_description desc{"Options"};
