@@ -46,8 +46,8 @@ __global__ void initCols(
 }
 
 __global__ void matrixFill(
-    char* d_seq1,
-    char* d_seq2,
+    int* d_seq1,
+    int* d_seq2,
     int *mat,
     int L1,
     int L2
@@ -134,5 +134,7 @@ void compute(
 
     initRows<<<5, L1/5>>>(d_mat, L1);
     initCols<<<5, L2/5>>>(d_mat, L1, L2);
+    matrixFill<<<5, L2/5>>>(d_seq1, d_seq2, d_mat, L1, L2);
+
     cudaMemcpy(mat, d_mat, l1*l2*sizeof(int), cudaMemcpyDeviceToHost);
 }

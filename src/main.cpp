@@ -114,8 +114,10 @@ int main(int argc, char** argv) {
 
     int mat[l1*l2];
     timer.Start();
-    fprintf(stdout, "\nCompute Levinstein distance in CPU.\n");
+    fprintf(stdout, "\nCompute Levinstein distance in GPU.\n");
     compute(seq1, seq2, l1, l2, mat);
+    fprintf(stdout, "\nCompleted in %ld msec \n\n", timer.Stop());
+    
     return 0;
 }
 
