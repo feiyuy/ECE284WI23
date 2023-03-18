@@ -111,7 +111,7 @@ void compute(
     int l2,
     int *mat
 ) {
-
+    Timer timer;
     int *d_mat, *d_seq1, *d_seq2;
     int L1, L2;
     cudaMalloc(&d_mat, l1*l2*sizeof(int));
