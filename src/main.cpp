@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
     std::string sa;
     new_file.open(refFilename, std::ios::in); 
     getline(new_file, sa);
-    char* s1 = sa.c_str();
+    const char* s1 = sa.c_str();
 
     int i,l1;
     l1 = strlen(s1);
@@ -68,10 +68,10 @@ int main(int argc, char** argv) {
     }
 
     getline(new_file, sa);
-    char* s2 = sa.c_str();
+    const char* s2 = sa.c_str();
     int j,l2;
     l2 = strlen(s2);
-    int seq1[l1];
+    int seq2[l2];
     for (j=0;i<l2;j++){
         switch(s2[j]) {
         case 'A':
