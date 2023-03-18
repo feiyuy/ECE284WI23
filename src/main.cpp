@@ -120,7 +120,6 @@ int main(int argc, char** argv) {
     fprintf(stdout, "\nCompleted in %ld usec \n\n", timer.Stop());
 
     int mat[l1*l2];
-    timer.Start();
 
     compute(seq1, seq2, l1, l2, mat);
     
