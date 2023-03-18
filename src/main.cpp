@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     }
 
     int i,j,l1,l2,t,track;
-    int dist[50][50];
+    int dist[51][51];
     //take the strings as input
     char s1[] = "GCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGC";
     char s2[] = "CTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCT";
