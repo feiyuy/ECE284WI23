@@ -95,7 +95,7 @@ int main(int argc, char** argv) {
     new_file.close(); 
 
     int t,track;
-    int dist[51][51];
+    int dist[l2][l1];
 
     timer.Start();
     fprintf(stdout, "\nCompute Levinstein distance in CPU.\n");
