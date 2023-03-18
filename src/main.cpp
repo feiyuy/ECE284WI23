@@ -117,7 +117,7 @@ int main(int argc, char** argv) {
         }
     }
     std::cout<<"The Levinstein distance is:"<<dist[l2][l1];
-    fprintf(stdout, "\nCompleted in %ld usec \n\n", timer.Stop());
+    fprintf(stdout, "\nCompleted in %ld msec \n\n", timer.Stop());
 
     int mat[l1*l2];
 
