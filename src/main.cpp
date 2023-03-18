@@ -6,6 +6,7 @@
 #include <tbb/task_scheduler_init.h>
 #include "seedTable.cuh"
 #include "zlib.h"
+#define MIN(x,y) ((x) < (y) ? (x) : (y))
 
 // For parsing the command line values
 namespace po = boost::program_options;
@@ -60,7 +61,7 @@ int main(int argc, char** argv) {
             dist[i][j] = MIN(t,(dist[i-1][j-1]+track));
         }
     }
-    cout<<"The Levinstein distance is:"<<dist[l2][l1];
+    std::cout<<"The Levinstein distance is:"<<dist[l2][l1];
 
     return 0;
 }
