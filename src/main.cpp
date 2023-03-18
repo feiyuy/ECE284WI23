@@ -44,7 +44,8 @@ int main(int argc, char** argv) {
     if (new_file.is_open()) { 
         getline(new_file, sa);
         int length = sa.length();
-        char s1[length] = sa;
+        char* s1 = new char[length + 1];
+        strcpy(s1, sa.c_str());
     }
     new_file.close(); 
 
