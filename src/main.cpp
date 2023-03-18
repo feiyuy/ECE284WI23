@@ -42,22 +42,11 @@ int main(int argc, char** argv) {
     std::string sa;
     new_file.open(refFilename, std::ios::in); 
     getline(new_file, sa);
-    int length = sa.length();
-    char* s1 = new char[length + 1];
-    strcpy(s1, sa.c_str());
-    new_file.close(); 
+    char* s1 = sa.c_str();
 
-    int i,j,l1,l2,t,track;
-    int dist[51][51];
-    //take the strings as input
-    char s2[] = "CTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCTAAGCCT";
-    //stores the lenght of strings s1 and s2
+    int i,l1;
     l1 = strlen(s1);
-    l2= strlen(s2);
-
     int seq1[l1];
-    int seq2[l2];
-
     for (i=0;i<l1;i++){
         switch(s1[i]) {
         case 'A':
@@ -78,6 +67,11 @@ int main(int argc, char** argv) {
         }
     }
 
+    getline(new_file, sa);
+    char* s2 = sa.c_str();
+    int j,l2;
+    l2 = strlen(s2);
+    int seq1[l1];
     for (j=0;i<l2;j++){
         switch(s2[j]) {
         case 'A':
@@ -97,6 +91,11 @@ int main(int argc, char** argv) {
             break;
         }
     }
+
+    new_file.close(); 
+
+    int t,track;
+    int dist[51][51];
 
     timer.Start();
     fprintf(stdout, "\nCompute Levinstein distance in CPU.\n");
