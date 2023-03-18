@@ -14,7 +14,7 @@ class Timer {
         useconds = m_EndTime.tv_usec - m_StartTime.tv_usec;
         seconds = m_EndTime.tv_sec - m_StartTime.tv_sec;
         mseconds = ((seconds) * 1000 + useconds/1000.0 + 0.5);
-        return mseconds;
+        return useconds;
     }
 };
 
