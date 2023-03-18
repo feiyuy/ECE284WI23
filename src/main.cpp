@@ -6,8 +6,6 @@
 #include <tbb/task_scheduler_init.h>
 #include "seedTable.cuh"
 #include "zlib.h"
-#define MIN(x,y) ((x) < (y) ? (x) : (y))
-#define MAX(x,y) ((x) < (y) ? (y) : (x))
 
 // For parsing the command line values
 namespace po = boost::program_options;
@@ -109,7 +107,7 @@ int main(int argc, char** argv) {
         }
     }
     std::cout<<"The Levinstein distance is:"<<dist[l2][l1];
-    fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
+    fprintf(stdout, "\nCompleted in %ld msec \n\n", timer.Stop());
 
     return 0;
 }

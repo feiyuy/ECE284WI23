@@ -7,24 +7,38 @@
 #include <thrust/host_vector.h>
 #include <thrust/device_vector.h>
 
-/*
 void compute(
-    char *seq1,
-    char *seq2,
+    int *seq1,
+    int *seq2,
     int l1,
     int l2,
     int *mat
 ) {
-    int L1 = MIN(l1, l2);
-    int L2 = MAX(l1, l2);
 
-    int *d_mat;
-
-    cudaMalloc(&d_mat, L1*L2*sizeof(int));
+    int *d_mat, *d_seq1, *d_seq2;
+    int L1, L2;
+    cudaMalloc(&d_mat, l1*l2*sizeof(int));
+    if (l1<l2){
+        L1 = l1;
+        L2 = l2;
+        cudaMalloc(&d_seq1, L1*sizeof(int));
+        cudaMalloc(&d_seq2, L2*sizeof(int));
+        cudaMemcpy(d_seq1, seq1, L1*sizeof(int), cudaMemcpyHostToDevice);
+        cudaMemcpy(d_seq2, seq2, L2*sizeof(int), cudaMemcpyHostToDevice);
+    }
+    else{
+        L1 = l2;
+        L2 = l1;
+        cudaMalloc(&d_seq1, L1*sizeof(int));
+        cudaMalloc(&d_seq2, L2*sizeof(int));
+        cudaMemcpy(d_seq1, seq2, L1*sizeof(int), cudaMemcpyHostToDevice);
+        cudaMemcpy(d_seq2, seq1, L2*sizeof(int), cudaMemcpyHostToDevice);
+    }
 
     initRows <<5, L1/5>>>(d_mat, L1);
     initCols <<5, L2/5>>>(d_mat, L1, L2);
-*/
+    cudaMemcpy(mat, d_mat, l1*l2*sizeof(int), cudaMemcpyDeviceToHost);
+}
 
 __global__ void initRows(
     int *mat,
