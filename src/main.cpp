@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
     l2= strlen(s2);
 
     int seq1[l1];
-    int seq1[l2];
+    int seq2[l2];
 
     for (i=0;i<l1;i++){
         switch(s1[i]) {
