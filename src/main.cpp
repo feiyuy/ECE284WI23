@@ -43,7 +43,8 @@ int main(int argc, char** argv) {
     new_file.open(refFilename, std::ios::in); 
     if (new_file.is_open()) { 
         getline(new_file, sa);
-        char s1[] = sa;
+        int length = sa.length();
+        char s1[length] = sa;
     }
     new_file.close(); 
 
