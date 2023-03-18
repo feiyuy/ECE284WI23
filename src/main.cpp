@@ -38,8 +38,8 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
-    fstream new_file;
-    string sa;
+    std::fstream new_file;
+    std::string sa;
     new_file.open(refFilename, ios::in); 
     if (new_file.is_open()) { 
         getline(new_file, sa);
