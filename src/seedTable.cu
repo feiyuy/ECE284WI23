@@ -132,9 +132,11 @@ void compute(
         cudaMemcpy(d_seq2, seq1, L2*sizeof(int), cudaMemcpyHostToDevice);
     }
 
+    fprintf(stdout, "\nCompute Levinstein distance in GPU.\n");
     initRows<<<5, L1/5>>>(d_mat, L1);
     initCols<<<5, L2/5>>>(d_mat, L1, L2);
     matrixFill<<<5, L2/5>>>(d_seq1, d_seq2, d_mat, L1, L2);
+    fprintf(stdout, "\nCompleted in %ld usec \n\n", timer.Stop());
 
     cudaMemcpy(mat, d_mat, l1*l2*sizeof(int), cudaMemcpyDeviceToHost);
 }
