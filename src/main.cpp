@@ -2,6 +2,8 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <cuda_runtime_api.h>
+#include <cuda.h>
 #include <boost/program_options.hpp>
 #include <tbb/task_scheduler_init.h>
 #include "seedTable.cuh"
@@ -68,8 +70,8 @@ int main(int argc, char** argv) {
     std::cout<<"The Levinstein distance is:"<<dist[l2][l1];
     fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
 
-    L1 = MIN(l1, l2);
-    L2 = MAX(l1, l2);
+    int L1 = MIN(l1, l2);
+    int L2 = MAX(l1, l2);
 
     int *d_mat;
     cudaMalloc(&d_mat, L1*L2*sizeof(int));
