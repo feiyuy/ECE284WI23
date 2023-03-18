@@ -3,7 +3,6 @@
 #include <boost/program_options.hpp>
 #include <tbb/task_scheduler_init.h>
 #include "timer.hpp"
-#include "utils.hpp"
 #include "kseq.h"
 #include "zlib.h"
 
