@@ -1,6 +1,11 @@
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
+#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <assert.h>
 #include <math.h>
-#include <stdint.h>
+#include <time.h>
 
 #define MIN(x,y) ((x) < (y) ? (x) : (y))
 

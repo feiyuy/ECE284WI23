@@ -38,12 +38,6 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
-    // Print GPU information
-    timer.Start();
-    fprintf(stdout, "Printing GPU device properties.\n");
-    printGpuProperties();
-    fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
-
     // Read input sequence as kseq_t object
     timer.Start();
     fprintf(stdout, "Reading input sequence.\n");
