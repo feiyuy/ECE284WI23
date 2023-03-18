@@ -109,6 +109,10 @@ int main(int argc, char** argv) {
     std::cout<<"The Levinstein distance is:"<<dist[l2][l1];
     fprintf(stdout, "\nCompleted in %ld msec \n\n", timer.Stop());
 
+    int mat[l1*l2];
+    timer.Start();
+    fprintf(stdout, "\nCompute Levinstein distance in CPU.\n");
+    compute(seq1, seq2, l1, l2, mat);
     return 0;
 }
 
