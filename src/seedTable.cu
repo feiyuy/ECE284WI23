@@ -55,6 +55,8 @@ __global__ void matrixFill(
 
     int thread_index = threadIdx.x + blockIdx.x * blockDim.x;
 
+    int x, y, up, left, diagonal, temp, result;
+
     for (int i=1; i<L2; i++){
         if (thread_index < (i < L1-1? i:L1-1)){
             x = 1 + thread_index;
