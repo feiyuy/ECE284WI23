@@ -2,7 +2,8 @@
 #include <vector>
 #include <boost/program_options.hpp>
 #include <tbb/task_scheduler_init.h>
-#include "timer.hpp"
+#include "seedTable.cuh"
+#include "twoBitCompressor.hpp"
 #include "kseq.h"
 #include "zlib.h"
 
@@ -37,9 +38,16 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
+    // Print GPU information
+    timer.Start();
+    fprintf(stdout, "Setting CPU threads to %u and printing GPU device properties.\n", numThreads);
+    tbb::task_scheduler_init init(numThreads);
+    printGpuProperties();
+    fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
+
     // Read input sequence as kseq_t object
     timer.Start();
-    fprintf(stdout, "Reading input sequence.\n");
+    fprintf(stdout, "Reading input sequence and compressing to two-bit encoding.\n");
     gzFile fp = gzopen(refFilename.c_str(), "r");
     if (!fp) {
         fprintf(stdout, "ERROR: Cannot open file: %s\n", refFilename.c_str());
@@ -55,7 +63,7 @@ int main(int argc, char** argv) {
     printf("Sequence size: %zu\n", record->seq.l);
     fprintf(stdout, "Completed in %ld msec \n\n", timer.Stop());
 
-    
+
     return 0;
 }
 
