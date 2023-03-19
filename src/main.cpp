@@ -172,8 +172,8 @@ int main(int argc, char** argv) {
         }
     }
 
-    char track[20];
-    seg_compute(sequence1, sequence2, track);
+    char track2[20];
+    seg_compute(sequence1, sequence2, track2);
 
     return 0;
 }
