@@ -293,6 +293,7 @@ void seg_compute(
     boundaryFill<<<2, 4>>>(d_seq1, d_seq2, d_edge_up1, d_edge_up2, d_edge_left1, d_edge_left2, d_buffer1, d_buffer2, d_buffer3);
 
     int *d_mat, *mat;
+    mat = (int *)malloc(4*4);
     cudaMalloc(&d_mat, 4*4*sizeof(int));
 
     initCol<<<2, 2>>>(d_edge_left2+4, d_mat);
