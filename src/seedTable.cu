@@ -170,8 +170,8 @@ __global__ void boundaryFill(
     for (int i=1; i<8; i++){
         if (thread_index < i){
 
-            buffer3 = buffer2;
-            buffer2 = buffer1;
+            d_buffer3 = d_buffer2;
+            d_buffer2 = d_buffer1;
 
             x = 1 + thread_index;
             y = i - thread_index;
@@ -182,19 +182,19 @@ __global__ void boundaryFill(
                 diagonal = d_edge_up1[0];
             }
             else if (x == 1){
-                up = buffer2[0];
+                up = d_buffer2[0];
                 left = d_edge_left1[i];
                 diagonal = d_edge_left1[i-1];
             }
             else if (y == 1){
                 up = d_edgee_up1[i];
-                left = buffer2[i-2];
+                left = d_buffer2[i-2];
                 diagonal = d_edge_up1[i-1];
             }
             else{
-                up = buffer2[thread_index];
-                left = buffer2[thread_index-1];
-                diagonal = buffer3[thread_index-1];
+                up = d_buffer2[thread_index];
+                left = d_buffer2[thread_index-1];
+                diagonal = d_buffer3[thread_index-1];
             }
             if (d_seq1[x] != d_seq2[y]){
                 diagonal = diagonal + 1;
@@ -202,7 +202,7 @@ __global__ void boundaryFill(
 
             temp = (up < left? up:left);
             result = (temp < diagonal? temp:diagonal);
-            buffer1[thread_index] = result;
+            d_buffer1[thread_index] = result;
 
             if (x == 4){
                 d_edge_left2[y] = result;
@@ -218,15 +218,15 @@ __global__ void boundaryFill(
     for (int j=1; j<7; j++){
         if (thread_index < j){
 
-            buffer3 = buffer2;
-            buffer2 = buffer1;
+            d_buffer3 = d_buffer2;
+            d_buffer2 = d_buffer1;
 
             x = 1 + j + thread_index;
             y = 7 - thread_index;
 
-            up = buffer2[thread_index+1];
-            left = buffer2[thread_index];
-            diagonal = buffer3[thread_index+1];
+            up = d_buffer2[thread_index+1];
+            left = d_buffer2[thread_index];
+            diagonal = d_buffer3[thread_index+1];
 
             if (d_seq1[x] != d_seq2[y]){
                 diagonal = diagonal + 1;
@@ -234,7 +234,7 @@ __global__ void boundaryFill(
 
             temp = (up < left? up:left);
             result = (temp < diagonal? temp:diagonal);
-            buffer1[thread_index] = result;
+            d_buffer1[thread_index] = result;
 
             if (x == 4){
                 d_edge_left2[y] = result;
@@ -271,13 +271,13 @@ void seg_compute(
     int *seq2,
     char *track
 ) {
-    int *d_edge_up1, *&d_edge_up2, *d_edge_left1, *d_edge_left2;
+    int *d_edge_up1, *d_edge_up2, *d_edge_left1, *d_edge_left2;
     cudaMalloc(&d_edge_up1, 8*sizeof(int));
     cudaMalloc(&d_edge_up2, 8*sizeof(int));
     cudaMalloc(&d_edge_left1, 8*sizeof(int));
     cudaMalloc(&d_edge_left2, 8*sizeof(int));
 
-    int *d_buffer1, *d_buffer2, d_buffer3;
+    int *d_buffer1, *d_buffer2, *d_buffer3;
     cudaMalloc(&d_buffer1, 8*sizeof(int));
     cudaMalloc(&d_buffer2, 8*sizeof(int));
     cudaMalloc(&d_buffer3, 8*sizeof(int));
