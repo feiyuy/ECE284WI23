@@ -99,6 +99,7 @@ int main(int argc, char** argv) {
 
     timer.Start();
     fprintf(stdout, "\nCompute Levinstein distance in CPU.\n");
+    //CPU Implementation
     for(i=0;i<=l1;i++) {
         dist[0][i] = i;
     }
@@ -117,12 +118,63 @@ int main(int argc, char** argv) {
         }
     }
     std::cout<<"The Levinstein distance is:"<<dist[l2][l1];
-    fprintf(stdout, "\nCompleted in %ld msec \n\n", timer.Stop());
+    fprintf(stdout, "\nCompleted in %ld usec \n\n", timer.Stop());
 
     int mat[l1*l2];
 
+    //compute the Levinstein distance in GPU
     compute(seq1, seq2, l1, l2, mat);
-    
+
+
+    //demo for the segement way
+    char t1[] = "AAGCCTAA";
+    char t2[] = "CATTTTAC";
+
+    int sequence1[8];
+    for (i=0;i<8;i++){
+        switch(t1[i]) {
+        case 'A':
+            sequence1[i] = 0;
+            break;
+        case 'C':
+            sequence1[i] = 1;
+            break;
+        case 'G':
+            sequence1[i] = 2;
+            break;
+        case 'T':
+            sequence1[i] = 3;
+            break;
+        default:
+            sequence1[i] = 0;
+            break;
+        }
+    }
+
+    int sequence2[8];
+    for (j=0;i<8;j++){
+        switch(t2[j]) {
+        case 'A':
+            sequence2[j] = 0;
+            break;
+        case 'C':
+            sequence2[j] = 1;
+            break;
+        case 'G':
+            sequence2[j] = 2;
+            break;
+        case 'T':
+            sequence2[j] = 3;
+            break;
+        default:
+            sequence2[j] = 0;
+            break;
+        }
+    }
+
+    char track[20];
+    seg_compute(sequence1, sequence2, track);
+
     return 0;
 }
 
