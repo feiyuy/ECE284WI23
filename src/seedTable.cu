@@ -187,7 +187,7 @@ __global__ void boundaryFill(
                 diagonal = d_edge_left1[i-1];
             }
             else if (y == 1){
-                up = d_edgee_up1[i];
+                up = d_edge_up1[i];
                 left = d_buffer2[i-2];
                 diagonal = d_edge_up1[i-1];
             }
@@ -298,7 +298,7 @@ void seg_compute(
     initCol<<<2, 2>>>(d_edge_left2+4, d_mat);
     initRow<<<2, 2>>>(d_edge_up2+4, d_mat);
 
-    matrixFill<<<1, 3>>>(d_seq1+4, d_seq2+4, 4, 4, d_mat);
+    matrixFill<<<1, 3>>>(d_seq1+4, d_seq2+4, d_mat, 4, 4);
 
     cudaMemcpy(mat, d_mat, 4*4*sizeof(int), cudaMemcpyDeviceToHost);
 
@@ -361,7 +361,7 @@ void seg_compute(
         initCol<<<2, 2>>>(d_edge_left2, d_mat);
         initRow<<<2, 2>>>(d_edge_up2, d_mat);
 
-        matrixFill<<<1, 3>>>(d_seq1, d_seq2, 4, 4, d_mat);
+        matrixFill<<<1, 3>>>(d_seq1, d_seq2, d_mat, 4, 4);
 
         cudaMemcpy(mat, d_mat, 4*4*sizeof(int), cudaMemcpyDeviceToHost);
     }
@@ -370,7 +370,7 @@ void seg_compute(
         initCol<<<2, 2>>>(d_edge_left2, d_mat);
         initRow<<<2, 2>>>(d_edge_up2+4, d_mat);
 
-        matrixFill<<<1, 3>>>(d_seq1+4, d_seq2, 4, 4, d_mat);
+        matrixFill<<<1, 3>>>(d_seq1+4, d_seq2, d_mat, 4, 4);
 
         cudaMemcpy(mat, d_mat, 4*4*sizeof(int), cudaMemcpyDeviceToHost);
     }
@@ -379,7 +379,7 @@ void seg_compute(
         initCol<<<2, 2>>>(d_edge_left2+4, d_mat);
         initRow<<<2, 2>>>(d_edge_up2, d_mat);
 
-        matrixFill<<<1, 3>>>(d_seq1, d_seq2+4, 4, 4, d_mat);
+        matrixFill<<<1, 3>>>(d_seq1, d_seq2+4, d_mat, 4, 4);
 
         cudaMemcpy(mat, d_mat, 4*4*sizeof(int), cudaMemcpyDeviceToHost);
     }
